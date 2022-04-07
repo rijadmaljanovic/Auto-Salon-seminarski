@@ -1,0 +1,86 @@
+﻿@using Auto_salon.ViewModels
+@{
+    Layout = null;
+}
+@model DodajZaposlenikaVM
+<style>
+    .card card-5 {
+        width: 60%;
+        padding: 30px;
+        border: 1px solid black;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .card card-5 div {
+        margin-bottom: 5px;
+    }
+
+</style>
+<div class="card card-5">
+    <div class="card-heading">
+        <h2 class="title">Dodavanje novog zaposlenika</h2>
+    </div>
+    <div class="card-body">
+        <form asp-action="SnimiNovogZaposlenika" method="post" class="form" role="form">
+
+            <div class="form-group">
+                <label asp-for="@Model.Ime"></label>
+                <input asp-for="@Model.Ime" class="form-control" type="text" />
+                <span asp-validation-for="@Model.Ime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Prezime"></label>
+                <input asp-for="@Model.Prezime" class="form-control" type="text" />
+                <span asp-validation-for="@Model.Prezime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Email"></label>
+                <input asp-for="@Model.Email" class="form-control">
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Telefon"></label>
+                <input asp-for="@Model.Telefon" class="form-control">
+                <span asp-validation-for="@Model.Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Adresa"></label>
+                <input asp-for="@Model.Adresa" class="form-control">
+                <span asp-validation-for="@Model.Adresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.JMBG"></label>
+                <input asp-for="@Model.JMBG" class="form-control">
+                <span asp-validation-for="@Model.JMBG" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.DatumZaposlenja"></label>
+                <input asp-for="@Model.DatumZaposlenja">
+                <span asp-validation-for="@Model.DatumZaposlenja" class="text-danger"></span>
+            </div>
+            <br />
+            <hr />
+            <div class="form-group">
+                <label asp-for="@Model.UserName"></label>
+                <input asp-for="@Model.UserName" class="form-control">
+                <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Password"></label>
+                <input type="password" asp-for="@Model.Password" class="form-control">
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+            @Html.AntiForgeryToken()
+            <button class="btn btn-success" type="submit">Snimi</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+

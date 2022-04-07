@@ -1,0 +1,38 @@
+﻿@using Auto_salon.ViewModels;
+
+@model OdaberiMarkuVM
+
+<style>
+        .card card-5 {
+            width: 60%;
+            padding: 30px;
+            border: 1px solid black;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card card-5 div {
+                margin-bottom: 5px;
+         }
+</style>
+
+<div class="card card-body">
+    <div class="card-heading">
+        <h2 class="title">Odaberi marku</h2>
+    </div>
+    <div class="card-body">
+        <form asp-action="DodajDetalje" method="post" class="form" role="form">
+
+            <div class="form-group">
+                <label asp-for="@Model.MarkaVozilaId"></label>
+                <select asp-for="@Model.MarkaVozilaId" asp-items="@Model.MarkeVozila" class="form-control">
+                    <option value="null" disabled selected></option>
+                </select>
+            </div>
+            <button class="btn btn-success" type="submit">Dodaj detalje</button>
+
+        </form>
+
+    </div>
+
+</div>

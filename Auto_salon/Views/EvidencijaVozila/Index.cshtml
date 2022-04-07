@@ -1,0 +1,149 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+@model IPagedList<Auto_salon.ViewModels.PrikazVozila>
+@{ ViewData["Title"] = "Prikaz vozila"; }
+
+<style>
+    #container {
+        height: 100% !important;
+        background-color: white;
+        margin: 15px;
+    }
+
+    body {
+        background-color: gray;
+    }
+
+    footer {
+        background-color: white;
+    }
+
+    #showNav {
+        background-color: #1C2331;
+    }
+    #paging{
+        margin:5px;
+    }
+</style>
+
+<div id="container">
+    <nav id="showNav" class="navbar  ">
+        <div class="container-fluid">
+            <h1 style="color: aliceblue">Evidencija vozila</h1>
+            <div class="d-flex">
+                <a asp-controller="SMS" asp-action="SendMessage" style="color:white;" class="btn btn-outline-light">
+                    <i class="fas fa-plus fa-1x"></i> Posalji poruku
+                </a>
+                <a style="color:lightseagreen; margin-left:10px;" class="btn btn-outline-info" id="addBtn">
+                    <i class="fas fa-plus fa-1x"></i> Dodaj vozilo
+                </a>
+            </div>
+        </div>
+
+    </nav>
+
+    <form asp-controller="EvidencijaVozila" asp-action="PretragaVozila" method="post" class="form" role="form">
+        <div style="width: 20%; margin: 10px;" class="input-group">
+
+            <input type="text" class="form-control rounded" placeholder="Ime vozila..." aria-label="Search" aria-describedby="search-addon" name="filter" value="" />
+            <button type="submit" class="btn btn-outline-primary">Pretrazi</button>
+
+        </div>
+    </form>
+    <table id="showtable" style="text-align: center; " class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Marka</th>
+                <th scope="col">Model</th>
+                <th scope="col">Godina proizvodnje</th>
+                <th scope="col">Transmisija</th>
+                <th scope="col">Cijena</th>
+                <th scope="col">Detalji/Izvjestaj</th>
+                <th scope="col">Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Marka</td>
+                    <td>@item.Model </td>
+                    <td>@item.GodinaProizvodnje</td>
+                    <td>@item.Transmisija</td>
+                    <td>@item.Cijena</td>
+                    <td>
+                        <a class="container-fluid" href="#" onclick="Details(@item.Id)">| Detaljno |</a>
+                        <a class="container-fluid" asp-controller="Report" asp-action="Index" asp-route-voziloId="@item.Id">| Printaj izvjestaj |</a>
+
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-outline-primary" onclick="Edit(@item.Id)">Uredi</a>
+
+                        <a class="btn btn-outline-secondary" asp-controller="EvidencijaVozila" asp-action="ObrisiVozilo" asp-route-voziloId="@item.Id">Obrisi</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+    <div id="paging" style="margin-left:50%; margin-bottom:5%;">
+        @Html.PagedListPager(Model, i => Url.Action("Index", "EvidencijaVozila", new { i = i }), new PagedListRenderOptions
+   {
+       DisplayLinkToIndividualPages = true,
+       DisplayPageCountAndCurrentLocation = false,
+       MaximumPageNumbersToDisplay = 10,
+       LiElementClasses = new string[] { "page-item" },
+       PageClasses = new string[] { "page-link" },
+
+   })
+
+    </div>
+
+
+    <div id="showmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div id="dialog" class="modal-dialog" role="document">
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        var Edit = function (id) {
+
+            var url = "/EvidencijaVozila/UrediVozilo?id=" + id;
+
+            $("#dialog").load(url, function () {
+                $("#showmodal").modal("show");
+
+            })
+        }
+
+        var Details = function (id) {
+
+            var url = "/EvidencijaVozila/DetaljiVozila?id=" + id;
+
+            $("#dialog").load(url, function () {
+                $("#showmodal").modal("show");
+
+            })
+        }
+
+        $("#showNav").on("click", "#addBtn", function () {
+            $.ajax({
+                url: "@Url.Action("DodajVozilo","EvidencijaVozila")",
+                success: function (data) {
+                    $("#showmodal .modal-dialog").html(data);
+                    $("#showmodal").modal("show");
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+

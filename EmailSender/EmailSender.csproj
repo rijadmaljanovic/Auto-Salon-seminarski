@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="106.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Auto_salon.Core\Auto_salon.Core.csproj" />
+    <ProjectReference Include="..\Auto_salon.Infrastructure\Auto_salon.Infrastructure.csproj" />
+    <ProjectReference Include="..\Data_AS\Data_AS.csproj" />
+  </ItemGroup>
+
+</Project>

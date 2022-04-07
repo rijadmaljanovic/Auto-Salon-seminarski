@@ -1,0 +1,112 @@
+﻿@using Auto_salon.ViewModels;
+@model List<SviZaposleniciVM>
+@{ ViewData["Title"] = "Svi zaposlenici"; }
+
+<div class="card card-5">
+    <div class="card-heading">
+        <h2 class="title">Prikaz svih zaposlenika</h2>
+    </div>
+    <div>
+        <form asp-controller="EvidencijaZaposlenika" asp-action="PretragaZaposlenika" method="post" class="form" role="form">
+
+            <label>Search</label><br />
+            <input type="text" name="filter" value="" />
+            <input type="submit" placeholder="Pretrazi" />
+
+        </form>
+
+    </div>
+    <div class="card-body">
+        <table class="table table-hover" id="dev-table">
+            <thead>
+                <tr>
+                    <th>Ime prezime</th>
+                    <th>Adresa</th>
+                    <th>Email</th>
+                    <th>Telefon</th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@(item.Ime)  @(item.Prezime)</td>
+                        <td>@item.Adresa</td>
+                        <td>@item.Email</td>
+                        <td>@item.Telefon</td>
+                        <td>
+                            <button class="btn btn-primary" onclick="UrediZaposlenika(@item.Id)">Uredi</button>
+                            <a class="btn btn-primary" asp-controller="EvidencijaZaposlenika" asp-action="ObrisiZaposlenika" asp-route-zaposlenikId="@item.Id">Obrisi</a>
+
+
+                            <!-- Modal -->
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-center"><strong>!!!</strong></h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            Jeste li sigurni da zelite izbrisati uposlenika?
+                                        </div>
+
+                                        <!-- Modal footer -->
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button class="btn btn-success" onclick="DodajNovog()">Dodaj</button>
+       @*<a class="btn btn-success" asp-controller="EvidencijaZaposlenika" asp-action="DodajNovogZaposlenika">Dodaj</a>*@
+
+    </div>
+</div>
+
+<div id="ajaxPrikaz"></div>
+<script>
+    function UrediZaposlenika(zaposlenikId) {
+
+        var url = "/EvidencijaZaposlenika/UrediZaposlenika?zaposlenikId=" + zaposlenikId;
+
+        $.get(url, function (d) {
+            $("#ajaxPrikaz").html(d);
+        });
+    }
+    function SnimiZaposlenika() {
+        var form = $("#UrediZaposlenikaForma");
+        var url = "/EvidencijaZaposlenika/SpremiUredjenogZaposlenika";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(),
+            success: function (data) {
+                $("#ajaxPrikaz").html(data);
+            }
+        });
+        alert("Uspjeno snimljeno");
+    }
+    function DodajNovog() {
+        var url = "/EvidencijaZaposlenika/DodajNovogZaposlenika";
+
+        $.get(url, function (d) {
+            $("#ajaxPrikaz").html(d);
+        });
+    }
+
+    
+</script>
+
+

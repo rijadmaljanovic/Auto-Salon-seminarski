@@ -1,0 +1,170 @@
+﻿@using Auto_salon.ViewModels
+@model DetaljiVozilaVM
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Detalji:</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="@Model.images[0]" class="d-block w-100">
+                    </div>
+                    @for (int i = 1; i < Model.images.Count; i++)
+                    {
+                        <div class="carousel-item">
+                            <img src="@Model.images[i]" class="d-block w-100">
+                        </div>
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+            <input asp-for="@Model.Id" type="hidden" />
+
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Marka: </label>
+                <label asp-for="@Model.Marka">@Model.Marka </label>
+            </div>
+
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Model: </label>
+                <label asp-for="@Model.ModelId">@Model.ModelId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Registrovan do: </label>
+                <label asp-for="@Model.RegistrovanDo">@Model.RegistrovanDo </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Predjeni Kilometri: </label>
+                <label asp-for="@Model.PredjeniKilometri">@Model.PredjeniKilometri </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Snaga Motora(KW): </label>
+                <label asp-for="@Model.SnagaMotoraKW">@Model.SnagaMotoraKW </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Snaga Motora(KS): </label>
+                <label asp-for="@Model.SnagaMotoraKS">@Model.SnagaMotoraKS </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Kubikaza: </label>
+                <label asp-for="@Model.Kubikaza">@Model.Kubikaza </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Broj Stepeni Prijenosa: </label>
+                <label asp-for="@Model.BrojStepeniPrijenosaId">@Model.BrojStepeniPrijenosaId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Gorivo: </label>
+                <label asp-for="@Model.GorivoId">@Model.GorivoId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Transmisija: </label>
+                <label asp-for="@Model.TransmisijaId">@Model.TransmisijaId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Godina Proizvodnje: </label>
+                <label asp-for="@Model.GodinaProizvodnjeId">@Model.GodinaProizvodnjeId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Parking Senzor: </label>
+                <label asp-for="@Model.ParkingSenzorId">@Model.ParkingSenzorId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Vrsta Motora: </label>
+                <label asp-for="@Model.VrstaMotoraId">@Model.VrstaMotoraId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Vrsta Klime: </label>
+                <label asp-for="@Model.VrstaKlimeId">@Model.VrstaKlimeId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Tip Vozila: </label>
+                <label asp-for="@Model.TipVozilaId">@Model.TipVozilaId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Boja: </label>
+                <label asp-for="@Model.BojaId">@Model.BojaId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Broj Vrata: </label>
+                <label asp-for="@Model.BrojVrataId">@Model.BrojVrataId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Pogon: </label>
+                <label asp-for="@Model.PogonId">@Model.PogonId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Emisioni Standard: </label>
+                <label asp-for="@Model.EmisioniStandardId">@Model.EmisioniStandardId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Vrsta Svjetla: </label>
+                <label asp-for="@Model.VrstaSvjetlaId">@Model.VrstaSvjetlaId </label>
+            </div>
+            <div class="form-group">
+                <label class="badge badge-pill badge-dark">Vrsta Karoserije: </label>
+                <label asp-for="@Model.VrstaKaroserijeId">@Model.VrstaKaroserijeId </label>
+            </div>
+
+
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(m => m.ABS, new { @disabled = "disabled" })
+                <label asp-for="@Model.ABS" class="form-check-label">ABS</label>
+            </div>
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(m => m.Alarm, new { @disabled = "disabled" })
+                <label asp-for="@Model.Alarm" class="form-check-label">Alarm</label>
+            </div>
+
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(m => m.ESP, new { @disabled = "disabled" })
+                <label asp-for="@Model.ESP" class="form-check-label">ESP</label>
+            </div>
+
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(m => m.Bluetooth, new { @disabled = "disabled" })
+                <label asp-for="@Model.Bluetooth" class="form-check-label">Bluetooth</label>
+            </div>
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(m => m.Maglenke, new { @disabled = "disabled" })
+                <label asp-for="@Model.Maglenke" class="form-check-label">Maglenke</label>
+            </div>
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(m => m.Metalik, new { @disabled = "disabled" })
+                <label asp-for="@Model.Metalik" class="form-check-label">Metalik</label>
+            </div>
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(m => m.Mat, new { @disabled = "disabled" })
+                <label asp-for="@Model.Mat" class="form-check-label">Mat</label>
+            </div>
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(m => m.Tempomat, new { @disabled = "disabled" })
+                <label asp-for="@Model.Tempomat" class="form-check-label">Tempomat</label>
+            </div>
+
+            <div class="form-group">
+                <label class="bg-success">Cijena: </label>
+                <label asp-for="@Model.Cijena">@Model.Cijena </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#cancel").on('click', function () {
+        $(this).closest(".modal").modal('hide');
+    });
+</script>

@@ -1,0 +1,170 @@
+﻿@using Auto_salon.ViewModels
+@model DodajVoziloVM
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Dodaj novo vozilo</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form asp-action="SnimiNovoVozilo" method="post" class="form" role="form" enctype="multipart/form-data">
+
+
+                <div class="mb-3">
+                    <label asp-for="@Model.Marka" class="badge badge-pill badge-dark"></label>
+                    <input asp-for="@Model.Marka" class="form-control" type="text" />
+                    <span asp-validation-for="@Model.Marka" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Modeli</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.ModelId" asp-items="Model.Modeli"></select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label asp-for="@Model.RegistrovanDo" class="badge badge-pill badge-dark"></label>
+                    <input asp-for="@Model.RegistrovanDo" class="form-control" type="text" />
+                    <span asp-validation-for="@Model.RegistrovanDo" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.PredjeniKilometri" class="badge badge-pill badge-dark"></label>
+                    <input asp-for="@Model.PredjeniKilometri" class="form-control" type="text" />
+                    <span asp-validation-for="@Model.PredjeniKilometri" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.SnagaMotoraKW" class="badge badge-pill badge-dark"></label>
+                    <input asp-for="@Model.SnagaMotoraKW" class="form-control" type="text" />
+                    <span asp-validation-for="@Model.SnagaMotoraKW" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.SnagaMotoraKS" class="badge badge-pill badge-dark"></label>
+                    <input asp-for="@Model.SnagaMotoraKS" class="form-control" type="text" />
+                    <span asp-validation-for="@Model.SnagaMotoraKS" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Kubikaza" class="badge badge-pill badge-dark"></label>
+                    <input asp-for="@Model.Kubikaza" class="form-control" type="text" />
+                    <span asp-validation-for="@Model.Kubikaza" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Broj Stepeni Prijenosa</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.BrojStepeniPrijenosaId" asp-items="Model.BrojStepeniPrijenosa"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Transmisija</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.TransmisijaId" asp-items="Model.Transmisija"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Godina Proizvodnje</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.GodinaProizvodnjeId" asp-items="Model.GodinaProizvodnje"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Parking Senzor</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.ParkingSenzorId" asp-items="Model.ParkingSenzor"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Vrsta Motora</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.VrstaMotoraId" asp-items="Model.VrstaMotora"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Vrsta Klime</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.VrstaKlimeId" asp-items="Model.VrstaKlime"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Tip Vozila</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.TipVozilaId" asp-items="Model.TipVozila"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Tip Vozila</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.GorivoId" asp-items="Model.Gorivo"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Boja</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.BojaId" asp-items="Model.Boja"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">BrojVrata</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.BrojVrataId" asp-items="Model.BrojVrata"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Pogon</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.PogonId" asp-items="Model.Pogon"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Emisioni Standard</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.EmisioniStandardId" asp-items="Model.EmisioniStandard"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Vrsta Svjetla</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.VrstaSvjetlaId" asp-items="Model.VrstaSvjetla"></select>
+                </div>
+                <div class="form-group">
+                    <label class="badge badge-pill badge-dark">Vrsta Karoserije</label>
+                    <select class="form-control form-control-lg" asp-for="@Model.VrstaKaroserijeId" asp-items="Model.VrstaKaroserije"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="@Model.Cijena" class="badge badge-pill badge-dark"></label>
+                    <input asp-for="@Model.Cijena" class="form-control" type="text" />
+                    <span asp-validation-for="@Model.Cijena" class="text-danger"></span>
+                </div>
+                <div class="mb-3 form-check">
+                    <input asp-for="@Model.ABS" type="checkbox" class="form-check-input">
+                    <label asp-for="@Model.ABS" class="form-check-label">ABS</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input asp-for="@Model.Alarm" type="checkbox" class="form-check-input">
+                    <label asp-for="@Model.Alarm" class="form-check-label">Alarm</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input asp-for="@Model.ESP" type="checkbox" class="form-check-input">
+                    <label asp-for="@Model.ESP" class="form-check-label">ESP</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input asp-for="@Model.Bluetooth" type="checkbox" class="form-check-input">
+                    <label asp-for="@Model.Bluetooth" class="form-check-label">Bluetooth</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input asp-for="@Model.Maglenke" type="checkbox" class="form-check-input">
+                    <label asp-for="@Model.Maglenke" class="form-check-label">Maglenke</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input asp-for="@Model.Metalik" type="checkbox" class="form-check-input">
+                    <label asp-for="@Model.Metalik" class="form-check-label">Metalik</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input asp-for="@Model.Mat" type="checkbox" class="form-check-input">
+                    <label asp-for="@Model.Mat" class="form-check-label">Mat</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input asp-for="@Model.Tempomat" type="checkbox" class="form-check-input">
+                    <label asp-for="@Model.Tempomat" class="form-check-label">Tempomat</label>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-sm-10">
+                        <div class="custom-file">
+                            <input class="custom-file-input form-control" asp-for="@Model.Images" type="file" multiple accept="image/*" />
+                            <label class="custom-file-label">Dodaj sliku</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <button class="btn btn-success" type="submit">Dodaj</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#cancel").on('click', function () {
+        $(this).closest(".modal").modal('hide');
+    });
+</script>
